@@ -143,7 +143,6 @@ export default function ProductGrid({ hotelCode, hotelName }: ProductGridProps) 
               >
                 <ProductCard 
                   product={product} 
-                  hotelCode={hotelCode} 
                   hotelName={hotelName} 
                 />
               </motion.div>
