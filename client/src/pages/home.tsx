@@ -143,7 +143,7 @@ export default function Home() {
           
             {/* 🎯 UX OPTIMIZATION: Products moved to 2nd position - Create desire BEFORE trust */}
             <div id="products" className="scroll-mt-20">
-              <ProductGrid hotelCode={hotelCode} hotelName={hotelName} />
+              <ProductGrid hotelName={hotelName} />
             </div>
         <TrustIndicators />
             <TestimonialSection />

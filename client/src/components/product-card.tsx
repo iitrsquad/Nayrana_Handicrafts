@@ -7,7 +7,6 @@ import { Star, Truck, CheckCircle } from "lucide-react";
 import { generateWhatsAppURL } from "@/lib/whatsapp";
 import { useToast } from "@/hooks/use-toast";
 import type { Product } from "@shared/schema";
-// import clsx from "clsx";
 import ProductDetailModal from "./ProductDetailModal";
 
 // Enhanced product reviews with more psychological triggers

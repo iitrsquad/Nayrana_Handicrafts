@@ -6,11 +6,10 @@ import type { Product } from "@shared/schema";
 import { mockProducts } from "@/lib/mock-data";
 
 interface ProductGridProps {
-  hotelCode: string;
   hotelName: string;
 }
 
-export default function ProductGrid({ hotelCode, hotelName }: ProductGridProps) {
+export default function ProductGrid({ hotelName }: ProductGridProps) {
   const { data: products, isLoading, error } = useQuery<Product[]>({
     queryKey: ["/api/products"],
     refetchOnWindowFocus: false,
