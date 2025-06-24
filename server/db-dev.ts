@@ -1,0 +1,321 @@
+// Development database - In-memory storage
+import * as schema from "@shared/schema";
+
+// Mock data for development
+const mockProducts = [
+  {
+    id: 1,
+    name: "Marble Taj Mahal Replica",
+    description: "Handcrafted white marble replica of the Taj Mahal with intricate inlay work",
+    price: 2490,
+    originalPrice: 4000,
+    imageUrl: "/assets/products/marble-taj-mahal-replica.png",
+    imageUrls: JSON.stringify([
+      "/assets/products/marble-taj-mahal-large.png",
+      "/assets/products/tajmahal3.png",
+      "/assets/products/marble-tajmahal-5.png",
+      "/assets/products/marble-tajmahal-6.png"
+    ]),
+    category: "Marble",
+    stock: 10,
+    isFeatured: true,
+    createdAt: new Date(),
+  },
+  {
+    id: 2,
+    name: "Marble Elephant Pair with Inlay Work",
+    description: "Stunning white marble elephant pair featuring intricate colorful stone inlay work (pietra dura). Large and small elephants with traditional Mughal floral patterns. Symbol of good luck and prosperity, handcrafted by master artisans.",
+    price: 15000,
+    originalPrice: 24000,
+    imageUrl: "/assets/products/marble-elephant-pair-inlay1.png",
+    imageUrls: JSON.stringify([
+      "/assets/products/marble-elephant-pair-inlay3.png",
+      "/assets/products/marble-elephant-pair-inlay2.png",
+      "/assets/products/marble-elephant-pair-inlay4.jpeg",
+      
+    ]),
+    category: "Marble",
+    stock: 6,
+    isFeatured: true,
+    createdAt: new Date(),
+  },
+  {
+    id: 3,
+    name: "Premium Marble Jewelry Box with  Inlay",
+    description: "Exquisite white marble jewelry box featuring intricate  leaf inlay work with Mughal-inspired floral vine patterns. Hand-carved by master artisans with  decorative finial. Perfect for storing precious jewelry and treasures.",
+    price: 2490,
+    originalPrice: 8000,
+    imageUrl: "/assets/products/jewelry-box-4.png",
+    imageUrls: JSON.stringify([
+      "/assets/products/jewelry-box-1.png",
+      "/assets/products/jewelry-box-2.png",
+      "/assets/products/jewelry-box-3.png",
+      "/assets/products/jewelry-box-4.png"
+    ]),
+    category: "Marble",
+    stock: 4,
+    isFeatured: true,
+    createdAt: new Date(),
+  },
+  {
+    id: 4,
+    name: "Marble Premium Floral Inlay Plate",
+    description: "Elegant white marble Plate with elegant design handcrafted by the finest artisans. Perfect blend of art and utility for home decoration.",
+    price: 10900,
+    imageUrl: "/assets/products/marble-floral-tray2.png",
+    imageUrls: JSON.stringify([
+      "/assets/products/marble-floral-tray3.png",
+      "/assets/products/marble-floral-tray5.png",
+      "/assets/products/marble-floral-tray2.png",
+      "/assets/products/marble-floral-tray2.png"
+    ]),
+    category: "Marble",
+    stock: 5,
+    isFeatured: true,
+    createdAt: new Date(),
+  },
+  {
+    id: 5,
+    name: "Handcrafted Marble Plate with Taj Mahal Inlay",
+    description: "This exquisite round marble plate features a breathtaking inlay of the Taj Mahal at its center, surrounded by a vibrant floral border crafted from semi-precious stones. Each plate is hand-carved and polished by Agra's master artisans, making it a true collector's piece and a stunning display of Mughal artistry. Perfect as a centerpiece, wall decor, or a luxury gift that captures the spirit of Agra's heritage.",
+    price: 14000,
+    originalPrice: 45160, // 69% discount
+    imageUrl: "/assets/products/marble-tajmahal-plate4.jpg",
+    imageUrls: JSON.stringify([
+      "/assets/products/marble-tajmahal-plate.jpg",
+      "/assets/products/marble-tajmahal-plate2.jpg",
+      "/assets/products/marble-tajmahal-plate3.jpg"
+    ]),
+    category: "Marble",
+    stock: 3,
+    isFeatured: true,
+    createdAt: new Date(),
+  },
+  {
+    id: 6,
+    name: "Premium Marble Coaster Set in Carved Stand",
+    description: "Exquisite 8-piece marble coaster set featuring blue and orange floral inlay work with ornate geometric lattice holder. Hand-carved stand with traditional Mughal patterns. Premium quality functional decor.",
+    price: 1190,
+    originalPrice: 2500,
+    imageUrl: "/assets/products/marble-coaster-set-premium.png",
+    imageUrls: JSON.stringify([
+      "/assets/products/marble-coaster-articleB.png",
+      "/assets/products/marble-coaster-articleB2.png",
+      "/assets/products/marble-coaster-articleB3.png"
+    ]),
+    category: "Marble",
+    stock: 8,
+    isFeatured: true,
+    createdAt: new Date(),
+  },
+  {
+    id: 7,
+    name: "Large Marble Taj Mahal Replica - Museum Quality",
+    description: "Magnificent large-scale white marble replica of the iconic Taj Mahal with intricate architectural details and carved dome work. Comes with premium wooden base. Museum-quality craftsmanship, perfect centerpiece souvenir.",
+    price: 3200,
+    imageUrl: "/assets/products/marble-taj-mahal-large.png",
+    imageUrls: null,
+    category: "Marble",
+    stock: 3,
+    isFeatured: true,
+    createdAt: new Date(),
+  },
+  {
+    id: 9,
+    name: "Marble Serving Tray with Taj Mahal Inlay",
+    description: "Serve your guests in style with this breathtaking marble tray, featuring a mother-of-pearl inlay of the Taj Mahal. The luminous, iridescent quality of the pearl captures the iconic monument in stunning detail. The tray is further embellished with delicate floral motifs in carnelian and malachite, a testament to the masterful pietra dura artistry of Agra. This piece comes with a set of three matching marble owls, each hand-painted with its own unique floral design, making it a complete decorative set. It's a functional work of art that brings a touch of royal Mughal elegance to any occasion.",
+    price: 11900,
+    originalPrice: 25000,
+    imageUrl: "/assets/products/marble-taj-tray.png",
+    imageUrls: JSON.stringify([
+      "/assets/products/marble-taj-tray1.png",
+      "/assets/products/marble-taj-tray2.png",
+      "/assets/products/marble-taj-tray1.png",
+    ]),
+    category: "Marble",
+    stock: 7,
+    isFeatured: true,
+    createdAt: new Date(),
+  },
+  {
+    id: 10,
+    name: "Handcrafted Marble & Soapstone Chess Set",
+    description: "Challenge a friend to a game on this exquisite, handcrafted chess set. The board features a striking yellow and black checkered pattern, offering a vibrant playing surface. The pieces are hand-carved from soapstone, with one side in a polished, deep black and the other in a natural, creamy white. More than just a game, this set is a piece of functional art that showcases the timeless skill of Agra's artisans. A perfect centerpiece for any room.",
+    price: 2490,
+    originalPrice: 6000,
+    imageUrl: "/assets/products/marble-chess-set (1).png",
+    imageUrls: JSON.stringify([
+      "/assets/products/marble-chess-set (4).png",
+      "/assets/products/marble-chess-set (2).png",
+      "/assets/products/marble-chess-set (3).png",
+      "/assets/products/marble-chess-set (4).png"
+    ]),
+    category: "Marble",
+    stock: 5,
+    isFeatured: true,
+    createdAt: new Date(),
+  },
+  {
+    id: 11,
+    name: "Custom Order: Advanced Taj Mahal Marble Plate (Pre-Order)",
+    description: "This extraordinary marble plate features a highly detailed inlay of the Taj Mahal, surrounded by vibrant hand-carved roses and foliage. Crafted only on demand by Agra's most skilled artisans, each piece is a true masterpiece of pietra dura art. Due to the advanced techniques and intricate work, this plate is available exclusively as a pre-order. Please allow 20–25 days for creation and delivery. A once-in-a-lifetime collector's item and a stunning tribute to India's heritage.",
+    price: 25000,
+    originalPrice: 70000, // 69% discount
+    imageUrl: "/assets/products/marble-tajmahal-plate-advanced.png",
+    imageUrls: JSON.stringify([
+      "/assets/products/marble-tajmahal-plate-advanced.png",
+      "/assets/products/marble-tajmahal-plate-advanced2.png",
+      "/assets/products/marble-tajmahal-plate-advanced3.png",
+      "/assets/products/marble-tajmahal-plate-advanced4.png"
+    ]),
+    category: "Marble",
+    stock: 0,
+    isFeatured: true,
+    createdAt: new Date(),
+    preOrder: true
+  },
+  {
+    id: 12,
+    name: "Handcrafted Floral Inlay Marble Tray",
+    description: "Bring home a true masterpiece of Agra's legendary craftsmanship. This rectangular marble tray features intricate floral inlay work, created by hand using semi-precious stones and centuries-old techniques. Each tray takes over a week to complete and is crafted by master artisans whose families have perfected this art for generations. Unlike mass-produced souvenirs, this is a genuine collector's piece—perfect as a centerpiece, serving tray, or luxury gift. Direct from Agra's artisans, with no middlemen or tourist trap markups.",
+    price: 18900,
+    originalPrice: 50000,
+    imageUrl: "/assets/products/marble-floral-tray.png",
+    imageUrls: JSON.stringify([
+      "/assets/products/marble-floral-tray4.jpg",
+      "/assets/products/marble-floral-tray.png",
+      "/assets/products/marble-tray5.png"
+    ]),
+    category: "Marble",
+    stock: 2,
+    isFeatured: true,
+    createdAt: new Date(),
+  },
+  {
+    id: 13,
+    name: "Royal Blue Hand-Embroidered Pashmina Shawl",
+    description: "Wrap yourself in luxury with this genuine pashmina shawl, handwoven in Kashmir and adorned with intricate floral embroidery. Each piece is crafted from the finest pashmina wool, renowned for its unmatched softness, warmth, and feather-light feel. The rich blue base and detailed copper-gold threadwork make this shawl a timeless statement of elegance—perfect for both special occasions and everyday sophistication. Unlike mass-market imitations, this is a true artisan product, sourced directly from local textile families. No middlemen, no tourist trap markups—just authentic heritage at an honest price.",
+    price: 17900,
+    originalPrice: 60000,
+    imageUrl: "/assets/products/pashmina-shawl-blue1.png",
+    imageUrls: JSON.stringify([
+      "/assets/products/pashmina-shawl-blue.png",
+      "/assets/products/pashmina-shawl-blue2.png",
+      "/assets/products/pashmina-shawl-blue3.png"
+    ]),
+    category: "Textile",
+    stock: 2,
+    isFeatured: true,
+    createdAt: new Date(),
+  },
+];
+
+const mockUsers = [
+  {
+    id: 1,
+    username: "admin",
+    password: "$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi", // "password"
+    createdAt: new Date(),
+  }
+];
+
+const mockHotels = [
+  {
+    id: 1,
+    hotelCode: "pearl",
+    hotelName: "Pearl Heritage Hotel",
+    commissionRate: "10.00",
+    createdAt: new Date(),
+  },
+  {
+    id: 2,
+    hotelCode: "taj",
+    hotelName: "Taj Hotel & Convention Centre",
+    commissionRate: "12.00",
+    createdAt: new Date(),
+  },
+  {
+    id: 3,
+    hotelCode: "oberoi",
+    hotelName: "The Oberoi Amarvilas",
+    commissionRate: "15.00",
+    createdAt: new Date(),
+  },
+];
+
+let mockOrders: any[] = [];
+let nextOrderId = 1;
+
+// Mock database operations
+export const devDb = {
+  // Products
+  getAllProducts: async () => mockProducts,
+  createProduct: async (data: any) => {
+    const newProduct = { 
+      ...data, 
+      id: Math.max(...mockProducts.map(p => p.id)) + 1,
+      createdAt: new Date()
+    };
+    mockProducts.push(newProduct);
+    return newProduct;
+  },
+  updateProduct: async (id: number, data: any) => {
+    const index = mockProducts.findIndex(p => p.id === id);
+    if (index === -1) return null;
+    mockProducts[index] = { ...mockProducts[index], ...data };
+    return mockProducts[index];
+  },
+  deleteProduct: async (id: number) => {
+    const index = mockProducts.findIndex(p => p.id === id);
+    if (index === -1) return false;
+    mockProducts.splice(index, 1);
+    return true;
+  },
+
+  // Users  
+  getUserById: async (id: number) => {
+    return mockUsers.find(u => u.id === id) || null;
+  },
+  getUserByUsername: async (username: string) => {
+    return mockUsers.find(u => u.username === username) || null;
+  },
+  createUser: async (data: any) => {
+    const newUser = {
+      ...data,
+      id: Math.max(...mockUsers.map(u => u.id)) + 1,
+      createdAt: new Date()
+    };
+    mockUsers.push(newUser);
+    return newUser;
+  },
+
+  // Orders
+  createOrder: async (data: any) => {
+    const newOrder = {
+      ...data,
+      id: nextOrderId++,
+      timestamp: new Date()
+    };
+    mockOrders.push(newOrder);
+    return newOrder;
+  },
+  getAllOrders: async () => mockOrders,
+  updateOrderStatus: async (id: number, status: string) => {
+    const order = mockOrders.find(o => o.id === id);
+    if (!order) return null;
+    order.status = status;
+    return order;
+  },
+
+  // Hotels
+  getAllHotels: async () => mockHotels,
+  createHotel: async (data: any) => {
+    const newHotel = {
+      ...data,
+      id: Math.max(...mockHotels.map(h => h.id)) + 1,
+      createdAt: new Date()
+    };
+    mockHotels.push(newHotel);
+    return newHotel;
+  }
+}; 
