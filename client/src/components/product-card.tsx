@@ -303,7 +303,6 @@ const recentActivity = [
 interface ProductCardProps {
   product: Product;
   hotelName: string;
-  hotelCode?: string;
 }
 
 export default function ProductCard({ product, hotelName }: ProductCardProps) {
