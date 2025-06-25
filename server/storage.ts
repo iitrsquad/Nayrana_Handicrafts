@@ -7,24 +7,17 @@ import {
 } from "@shared/schema";
 import { eq, desc } from "drizzle-orm";
 
-// Check if DATABASE_URL is available, if not use development database
-const isDevelopment = !process.env.DATABASE_URL;
+// TEMPORARY: Always use development database for Netlify deployment
+const isDevelopment = true; // Force to use dev database
 
 let db: any;
 let devDb: any;
 
-if (isDevelopment) {
-  console.log("🚀 Using development database (in-memory)");
-  // Import dev database
-  import("./db-dev").then(module => {
-    devDb = module.devDb;
-  });
-} else {
-  // Import real database
-  import("./db").then(module => {
-    db = module.db;
-  });
-}
+// Always import dev database
+console.log("🚀 Using hardcoded database for temporary deployment");
+import("./db-dev").then(module => {
+  devDb = module.devDb;
+});
 
 export interface IStorage {
   // User methods

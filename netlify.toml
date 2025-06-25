@@ -1,5 +1,5 @@
 [build]
-  command = "cd client && npm install --legacy-peer-deps && npm run build"
+  command = "cd client && npm install --legacy-peer-deps && npm run build && cp -r ../assets dist/"
   publish = "client/dist"
 
 [build.environment]
