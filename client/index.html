@@ -2,74 +2,288 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <!-- Optimized viewport for cross-platform mobile -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover" />
+    <!-- Cross-Platform Mobile Optimizations -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
     
-    <!-- iOS specific meta tags -->
+    <!-- iOS Specific Meta Tags -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="apple-mobile-web-app-title" content="Nayrana Handicrafts" />
+    <meta name="apple-touch-fullscreen" content="yes" />
     
-    <!-- Android specific meta tags -->
+    <!-- Android Specific Meta Tags -->
     <meta name="mobile-web-app-capable" content="yes" />
-    <meta name="theme-color" content="#10b981" />
+    <meta name="theme-color" content="#3B82F6" />
+    <meta name="msapplication-TileColor" content="#3B82F6" />
+    <meta name="msapplication-navbutton-color" content="#3B82F6" />
     
-    <!-- Prevent telephone number detection -->
-    <meta name="format-detection" content="telephone=no" />
+    <!-- Performance Optimizations -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="format-detection" content="telephone=no, email=no, address=no" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
     
-    <title>Nayrana Handicrafts - Authentic Agra Handicrafts | Skip Tourist Scams, Order Real Art</title>
-    <meta name="description" content="Skip tourist scams in Agra. Order real marble inlay, woodwork, and textiles directly from artisans — delivered to your hotel in 2-3 hours. No guide commissions.">
+    <!-- DNS Prefetch for Performance -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="//wa.me" />
     
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🕌</text></svg>">
+    <!-- Preconnect for Critical Resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     
-    <!-- Optimized font loading -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Loading Strategy for Luxury Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
     
-    <!-- Google Analytics - Replace G-XXXXXXXXXX with your actual measurement ID -->
-    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-XXXXXXXXXX');
-    </script> -->
-    
-    <!-- Prevent FOUT (Flash of Unstyled Text) -->
+    <!-- Critical CSS for FOUT Prevention -->
     <style>
-      body { 
-        font-family: 'Inter', system-ui, -apple-system, sans-serif; 
-        margin: 0; 
+      /* Critical inline styles for immediate render */
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        margin: 0;
         padding: 0;
+        background-color: #ffffff;
+        color: #1f2937;
+        line-height: 1.6;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
+        /* Prevent text scaling on orientation change */
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+        /* Prevent overscroll bounce */
+        overscroll-behavior: none;
+        /* GPU acceleration for smooth scrolling */
+        -webkit-overflow-scrolling: touch;
       }
       
-      /* Loading state styles */
+      /* Prevent horizontal scroll */
+      html, body {
+        overflow-x: hidden;
+        max-width: 100vw;
+      }
+      
+      /* iOS safe area support */
+      html {
+        padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+      }
+      
+      /* Loading state styling */
       #root {
         min-height: 100vh;
+        min-height: -webkit-fill-available;
       }
       
-      /* iOS specific fixes */
-      @supports (-webkit-touch-callout: none) {
+      /* Prevent flash of unstyled content */
+      .loading-placeholder {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        font-size: 1.125rem;
+        color: #64748b;
+        font-weight: 500;
+      }
+      
+      /* Cross-platform button reset */
+      button {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        border: none;
+        background: none;
+        cursor: pointer;
+        touch-action: manipulation;
+      }
+      
+      /* Touch target optimization */
+      a, button, input, textarea, select {
+        min-height: 44px;
+        min-width: 44px;
+      }
+      
+      /* High DPI display optimization */
+      @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
         body {
-          -webkit-text-size-adjust: 100%;
+          -webkit-font-smoothing: subpixel-antialiased;
+          -moz-osx-font-smoothing: auto;
         }
       }
       
-      /* Android specific fixes */
-      @media screen and (-webkit-device-pixel-ratio: 2) {
-        body {
-          text-rendering: optimizeLegibility;
+      /* iOS specific optimizations */
+      @supports (-webkit-touch-callout: none) {
+        /* Fix iOS viewport height issues */
+        #root {
+          min-height: -webkit-fill-available;
+        }
+        
+        /* iOS Safari optimizations */
+        input, textarea, button {
+          transform: translateZ(0);
+          -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+        }
+      }
+      
+      /* Android specific optimizations */
+      @media screen and (-webkit-min-device-pixel-ratio: 0) {
+        /* Remove Android tap highlight */
+        * {
+          -webkit-tap-highlight-color: transparent;
+        }
+        
+        /* Android Chrome optimizations */
+        input, textarea {
+          background-color: transparent;
+        }
+        
+        button {
+          background-image: none;
+        }
+      }
+      
+      /* Landscape orientation optimizations */
+      @media (orientation: landscape) and (max-height: 500px) {
+        #root {
+          min-height: 100vh;
+        }
+      }
+      
+      /* Prevent layout shift for images */
+      img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+      }
+      
+      /* Smooth scrolling */
+      html {
+        scroll-behavior: smooth;
+      }
+      
+      /* Reduced motion support */
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+          scroll-behavior: auto !important;
         }
       }
     </style>
+    
+    <title>Nayrana Handicrafts - Authentic Agra Handicrafts | Direct from Artisans</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Authentic Agra handicrafts delivered directly to your hotel. Government-certified artisans, no tourist trap pricing. Marble work, textiles, and traditional crafts." />
+    <meta name="keywords" content="Agra handicrafts, marble inlay, authentic crafts, hotel delivery, no tourist traps, government certified, Taj Mahal replica" />
+    <meta name="author" content="Nayrana Handicrafts" />
+    
+    <!-- Open Graph Meta Tags for Social Sharing -->
+    <meta property="og:title" content="Nayrana Handicrafts - Authentic Agra Handicrafts" />
+    <meta property="og:description" content="Skip tourist traps. Get authentic Agra handicrafts delivered to your hotel room. Government certified artisans, honest pricing." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://nayraanahandicrafts.netlify.app" />
+    <meta property="og:image" content="/assets/hero-handicraft-lantern.png" />
+    <meta property="og:site_name" content="Nayrana Handicrafts" />
+    <meta property="og:locale" content="en_US" />
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Nayrana Handicrafts - Authentic Agra Handicrafts" />
+    <meta name="twitter:description" content="Skip tourist traps. Get authentic Agra handicrafts delivered to your hotel room." />
+    <meta name="twitter:image" content="/assets/hero-handicraft-lantern.png" />
+    
+    <!-- Structured Data for Rich Snippets -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Nayrana Handicrafts",
+      "description": "Authentic Agra handicrafts delivered directly to hotels",
+      "url": "https://nayraanahandicrafts.netlify.app",
+      "telephone": "+91-74179-94386",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Agra",
+        "addressRegion": "Uttar Pradesh",
+        "addressCountry": "IN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "27.1767",
+        "longitude": "78.0081"
+      },
+      "openingHours": "Mo-Su 09:00-21:00",
+      "paymentAccepted": "Cash on Delivery",
+      "areaServed": "Agra Hotels",
+      "serviceType": "Handicraft Delivery"
+    }
+    </script>
+    
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https: data: blob:; img-src 'self' data: https: blob:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https: wss:;" />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="X-Frame-Options" content="DENY" />
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
+    
+    <!-- Favicon and Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#3B82F6" />
+    
+    <!-- Resource Hints for Performance -->
+    <link rel="preload" href="/assets/hero-handicraft-lantern.png" as="image" />
+    <link rel="preload" href="/assets/products/whatsapp-icon-green.svg" as="image" />
   </head>
   <body>
-    <div id="root"></div>
+    <!-- Loading Placeholder -->
+    <div id="root">
+      <div class="loading-placeholder">
+        <div style="text-align: center;">
+          <div style="width: 40px; height: 40px; border: 4px solid #e2e8f0; border-top: 4px solid #3b82f6; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 1rem;"></div>
+          <div>Loading Nayrana Handicrafts...</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Critical CSS animation for loading spinner -->
+    <style>
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+    </style>
+    
     <script type="module" src="/src/main.tsx"></script>
-    <!-- This is a replit script which adds a banner on the top of the page when opened in development mode outside the replit environment -->
-    <script type="text/javascript" src="https://replit.com/public/js/replit-dev-banner.js"></script>
+    
+    <!-- Performance monitoring -->
+    <script>
+      // Basic performance monitoring
+      window.addEventListener('load', function() {
+        if ('performance' in window) {
+          setTimeout(function() {
+            const perfData = performance.getEntriesByType('navigation')[0];
+            if (perfData && perfData.loadEventEnd > 0) {
+              console.log('Page load time:', Math.round(perfData.loadEventEnd - perfData.navigationStart), 'ms');
+            }
+          }, 0);
+        }
+      });
+      
+      // Service Worker registration for PWA capabilities
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/sw.js')
+            .then(function(registration) {
+              console.log('SW registered: ', registration);
+            })
+            .catch(function(registrationError) {
+              console.log('SW registration failed: ', registrationError);
+            });
+        });
+      }
+    </script>
   </body>
 </html>
