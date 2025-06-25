@@ -36,75 +36,99 @@ export default function ProductGrid({ hotelName }: ProductGridProps) {
   }
 
   return (
-    <section id="products" className="py-20 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Clean Section Header */}
-        <div className="text-center mb-16">
+    <section id="products" className="py-12 sm:py-16 bg-white">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8">
+        <div className="text-center mb-8 sm:mb-12">
+          {/* 🎯 PRIMARY HEADING: Exclusive Hotel Collection */}
+          <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+            className="mb-4 sm:mb-6"
+          >
+            <div className="flex items-center justify-center mb-2 sm:mb-3">
+              <div className="w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-r from-pink-500 to-rose-500 rounded-full flex items-center justify-center mr-2 sm:mr-3">
+                <span className="text-white text-sm sm:text-lg">🎯</span>
+              </div>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900">
+                Exclusive Hotel Collection
+              </h2>
+            </div>
+            <p className="text-base sm:text-lg text-gray-600 mb-3 sm:mb-4">
+              Curated specifically for discerning hotel guests
+            </p>
+          </motion.div>
+
+          {/* 🎯 CONSOLIDATED SOCIAL PROOF: Single, powerful trust bar */}
+          <motion.div 
+            className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 mb-6 sm:mb-8 text-xs sm:text-sm"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.4, delay: 0.2 }}
+          >
+            <div className="flex items-center text-green-600">
+              <span className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></span>
+              <span className="font-medium">12 people viewing now</span>
+            </div>
+            <div className="flex items-center text-orange-600">
+              <span className="w-2 h-2 bg-orange-500 rounded-full mr-2 animate-pulse"></span>
+              <span className="font-medium">Only 6 delivery slots left today</span>
+            </div>
+            <div className="flex items-center text-green-600">
+              <span className="font-medium">89+ tourists ordered this month</span>
+            </div>
+          </motion.div>
+
+          {/* 🎯 SECONDARY HEADING: Handcrafted Treasures as descriptive subtitle */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="space-y-6"
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="mb-6 sm:mb-8"
           >
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900">
-              Handcrafted
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 block sm:inline">
-                {" "}Collection
-              </span>
-            </h2>
-            <p className="text-xl text-gray-600 font-light max-w-2xl mx-auto leading-relaxed">
-              Authentic Agra artistry, delivered directly to your hotel room
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold text-gray-800 mb-2 sm:mb-3">
+              Handcrafted Treasures
+            </h3>
+            <p className="text-sm sm:text-base lg:text-lg text-gray-600 max-w-2xl mx-auto">
+            Authentic Agra handicrafts delivered directly to your hotel room. 
+            Each piece tells a story of traditional craftsmanship.
             </p>
-            
-            {/* Single, elegant social proof */}
-            <div className="flex items-center justify-center gap-6 pt-4">
-              <div className="flex items-center text-green-600">
-                <div className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></div>
-                <span className="text-sm font-medium">89+ happy guests</span>
-              </div>
-              <div className="flex items-center text-blue-600">
-                <div className="w-2 h-2 bg-blue-500 rounded-full mr-2 animate-pulse"></div>
-                <span className="text-sm font-medium">Same day delivery</span>
-              </div>
-            </div>
           </motion.div>
         </div>
 
-        {/* Clean Category Filter */}
+        {/* Filter Tabs - Mobile Scrollable */}
         <motion.div 
-          className="flex justify-center mb-12"
+          className="flex justify-center mb-6 sm:mb-8 overflow-x-auto"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <div className="bg-white rounded-full p-2 shadow-lg border border-gray-200">
-            <div className="flex space-x-1 overflow-x-auto">
-              <button className="px-6 py-3 rounded-full bg-blue-600 text-white font-medium shadow-sm text-sm whitespace-nowrap transition-all duration-300">
-                All Items
-              </button>
-              <button className="px-6 py-3 rounded-full text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition-all duration-300 text-sm whitespace-nowrap">
-                Marble Work
-              </button>
-              <button className="px-6 py-3 rounded-full text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition-all duration-300 text-sm whitespace-nowrap">
-                Wood Art
-              </button>
-              <button className="px-6 py-3 rounded-full text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition-all duration-300 text-sm whitespace-nowrap">
-                Textiles
-              </button>
-            </div>
+          <div className="bg-gray-100 rounded-lg p-1 flex space-x-1 min-w-max">
+            <button className="px-4 sm:px-6 py-2 rounded-md bg-white text-secondary font-medium shadow-sm text-sm whitespace-nowrap">
+              All Items
+            </button>
+            <button className="px-4 sm:px-6 py-2 rounded-md text-gray-600 hover:text-secondary transition-colors text-sm whitespace-nowrap">
+              Marble Work
+            </button>
+            <button className="px-4 sm:px-6 py-2 rounded-md text-gray-600 hover:text-secondary transition-colors text-sm whitespace-nowrap">
+              Wood Carvings
+            </button>
+            <button className="px-4 sm:px-6 py-2 rounded-md text-gray-600 hover:text-secondary transition-colors text-sm whitespace-nowrap">
+              Textiles
+            </button>
           </div>
         </motion.div>
 
         {isLoading ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
             {[...Array(6)].map((_, i) => (
-              <div key={i} className="bg-white animate-pulse rounded-2xl h-96 shadow-lg"></div>
+              <div key={i} className="bg-gray-200 animate-pulse rounded-lg h-80 sm:h-96"></div>
             ))}
           </div>
         ) : (
           <motion.div 
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -112,7 +136,7 @@ export default function ProductGrid({ hotelName }: ProductGridProps) {
             {displayProducts.map((product, index) => (
               <motion.div
                 key={product.id}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
@@ -125,40 +149,36 @@ export default function ProductGrid({ hotelName }: ProductGridProps) {
           </motion.div>
         )}
 
-        {/* Clean CTA Section */}
+        {/* 🎯 RETENTION BOOSTER: Urgency + Social proof + Clear CTA */}
         <motion.div 
-          className="text-center mt-20"
+          className="text-center mt-8 sm:mt-12"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          <div className="bg-white rounded-3xl p-8 shadow-xl border border-gray-100 max-w-2xl mx-auto">
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">
-              Looking for something specific?
-            </h3>
-            <p className="text-gray-600 mb-6 text-lg">
-              Chat with our artisans for custom pieces and exclusive items
-            </p>
-            
-            <Button 
-              size="lg"
-              className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 text-lg transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl rounded-full"
-              onClick={() => {
-                const whatsappUrl = `https://wa.me/917417994386?text=Hi! I'm staying at ${hotelName} and looking for handcrafted items. Can you show me your available collection?`;
-                window.open(whatsappUrl, '_blank');
-              }}
-            >
-              <img 
-                src="/assets/products/whatsapp-icon-green.svg" 
-                alt="WhatsApp" 
-                className="w-5 h-5 mr-3"
-              />
-              Chat with Artisans
-            </Button>
-            
-            <p className="text-sm text-gray-500 mt-4">
-              Response time: Under 5 minutes during 9 AM - 9 PM
-            </p>
+          {/* Subtle urgency indicator */}
+          <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 sm:p-4 mb-4 sm:mb-6 max-w-2xl mx-auto">
+            <div className="flex items-center justify-center gap-2 text-amber-800 text-xs sm:text-sm font-medium">
+              <div className="w-2 h-2 bg-amber-500 rounded-full animate-pulse"></div>
+              <span>⏰ Hotel-exclusive pricing • 24/7 delivery available</span>
+            </div>
+          </div>
+          
+          <Button 
+            size="lg"
+            className="bg-amber-600 hover:bg-amber-700 text-white px-6 sm:px-8 py-2 sm:py-3 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl text-sm sm:text-base"
+            onClick={() => {
+              const whatsappUrl = `https://wa.me/917417994386?text=Hi! I'm interested in your handcrafted products. I'm staying at ${hotelName}. Can you show me more items?`;
+              window.open(whatsappUrl, '_blank');
+            }}
+          >
+            View More Products on WhatsApp
+          </Button>
+          
+          {/* 🎯 TRUST REINFORCEMENT: Micro-testimonial */}
+          <div className="mt-3 sm:mt-4 text-xs sm:text-sm text-gray-600">
+            <span className="italic">"Perfect quality, delivered to my hotel in 2 hours!"</span>
+            <span className="text-green-600 font-medium"> - Sarah, UK 🇬🇧</span>
           </div>
         </motion.div>
       </div>

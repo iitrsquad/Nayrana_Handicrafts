@@ -327,6 +327,13 @@ export default function ProductCard({ product, hotelName }: ProductCardProps) {
 
   const productRating = getProductRating(product.id);
 
+  const calculateDiscountPercentage = (current: number, original: number) => {
+    return Math.round(((original - current) / original) * 100);
+  };
+
+  const originalPrice = Math.round(product.price * 1.69); // ~69% discount
+  const discountPercentage = calculateDiscountPercentage(product.price, originalPrice);
+
   const orderMutation = useMutation({
     mutationFn: async () => {
       // Simulate API call
@@ -365,131 +372,154 @@ export default function ProductCard({ product, hotelName }: ProductCardProps) {
     setIsModalOpen(true);
   };
 
+  const isBestseller = product.isFeatured;
+
   return (
     <>
       <motion.div 
-        className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 hover:scale-105 hover:-translate-y-4 relative cursor-pointer"
-        whileHover={{ y: -12, boxShadow: "0 25px 50px rgba(0,0,0,0.15)" }}
-        transition={{ duration: 0.4, ease: "easeOut" }}
+        className="group bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100 hover:scale-[1.02] hover:-translate-y-2 relative cursor-pointer"
+        whileHover={{ y: -8, boxShadow: "0 20px 40px rgba(0,0,0,0.15)" }}
+        transition={{ duration: 0.3, ease: "easeOut" }}
+        style={{
+          boxShadow: "0 4px 20px rgba(0,0,0,0.08)",
+        }}
         onClick={handleCardClick}
       >
-        <div className="relative overflow-hidden">
-          <img 
-            src={product.imageUrl} 
-            alt={`${product.name} - Authentic Agra handicraft`}
-            className="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-700"
-            loading="lazy"
-            onError={(e) => {
-              e.currentTarget.src = "https://via.placeholder.com/400x300?text=Product+Image";
-            }}
-          />
-          
-          {/* Elegant Badge */}
-          {product.isFeatured && (
-            <div className="absolute top-4 left-4">
-              <Badge className="bg-gradient-to-r from-amber-500 to-yellow-600 text-white shadow-lg font-medium text-sm px-3 py-1">
-                ✨ Bestseller
-              </Badge>
+      <div className="relative overflow-hidden">
+        <img 
+          src={product.imageUrl} 
+          alt={`${product.name} - ${product.category.toLowerCase()} by local artisan delivered to hotel`}
+          className="w-full h-48 sm:h-56 md:h-64 object-cover group-hover:scale-105 transition-transform duration-500"
+          loading="lazy"
+          onError={(e) => {
+            e.currentTarget.src = "https://via.placeholder.com/400x300?text=Product+Image";
+          }}
+        />
+        
+          {/* Single Priority Badge */}
+          {isBestseller && (
+            <div className="absolute top-2 sm:top-3 left-2 sm:left-3">
+            <Badge className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white shadow-lg font-bold text-xs">
+              ⭐ Bestseller
+            </Badge>
             </div>
           )}
           
-          {/* Subtle Pricing Overlay */}
-          <div className="absolute bottom-4 right-4">
-            <div className="bg-white/95 backdrop-blur-sm text-gray-900 font-bold px-4 py-2 rounded-full shadow-lg">
-              ₹{product.price.toLocaleString()}
-            </div>
+          {/* Clean Discount Badge */}
+          <div className="absolute top-2 sm:top-3 right-2 sm:right-3">
+          <div className="bg-red-600 text-white text-sm sm:text-base lg:text-lg font-bold px-2 sm:px-3 lg:px-4 py-1 sm:py-2 rounded-full shadow-lg">
+            {discountPercentage}% OFF
           </div>
         </div>
+        </div>
 
-        <div className="p-6 space-y-4">
-          {/* Clean Header */}
+        <div className="p-3 sm:p-4 lg:p-6 space-y-3 sm:space-y-4">
+          {/* Product Category & Rating */}
           <div className="flex items-center justify-between">
-            <Badge variant="outline" className="text-blue-600 border-blue-200 font-medium">
-              {product.category}
-            </Badge>
-            <div className="flex items-center space-x-1">
-              <Star className="w-4 h-4 text-yellow-400 fill-current" />
-              <span className="text-sm text-gray-600 font-medium">
-                {productRating.rating} ({productRating.count})
+          <Badge variant="secondary" className="text-primary font-semibold text-xs sm:text-sm">
+            {product.category}
+          </Badge>
+          <div className="flex items-center space-x-1">
+            <Star className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400 fill-current" />
+              <span className="text-xs sm:text-sm text-gray-600 font-semibold">
+                {productRating.rating} ({productRating.count} reviews)
               </span>
-            </div>
           </div>
-          
+        </div>
+        
           {/* Product Name */}
-          <h3 className="font-bold text-gray-900 text-xl leading-tight group-hover:text-blue-600 transition-colors">
-            {product.name}
-          </h3>
+          <h3 className="font-bold text-gray-900 text-base sm:text-lg lg:text-xl leading-tight">{product.name}</h3>
           
-          {/* Single Value Proposition */}
-          <div className="flex items-center gap-3 p-3 bg-blue-50 rounded-xl border border-blue-100">
-            <div className="w-5 h-5 bg-blue-600 rounded-full flex items-center justify-center">
-              <CheckCircle className="w-3 h-3 text-white" />
-            </div>
-            <span className="text-sm font-medium text-blue-800">
-              Hotel delivery • Authentic craftsmanship
-            </span>
+          {/* Single Trust Badge */}
+          <div className="flex items-center gap-2 p-2 sm:p-3 bg-blue-50 rounded-lg border border-blue-100">
+            <div className="w-4 h-4 sm:w-5 sm:h-5 bg-blue-600 rounded-full flex items-center justify-center">
+            <span className="text-white text-xs font-bold">✓</span>
           </div>
+            <span className="text-xs sm:text-sm font-semibold text-blue-800">
+              Authentic Agra Handicraft • Premium Quality
+          </span>
+        </div>
 
-          {/* Elegant Pricing */}
-          <div className="space-y-3">
-            <div className="flex items-baseline gap-3">
-              <span className="text-3xl font-bold text-gray-900">₹{product.price.toLocaleString()}</span>
-              <span className="text-lg text-gray-500 line-through">₹{Math.round(product.price * 1.69).toLocaleString()}</span>
-            </div>
-            <div className="flex items-center justify-between text-sm">
-              <span className="text-green-600 font-medium">Save ₹{(Math.round(product.price * 1.69) - product.price).toLocaleString()}</span>
-              <div className="flex items-center text-gray-600">
-                <Truck className="w-4 h-4 mr-1" />
-                <span>2-3 hours</span>
+          {/* Pricing - Most Important */}
+          <div className="p-3 sm:p-4 bg-gradient-to-r from-green-50 to-blue-50 rounded-xl border border-green-200">
+          <div className="flex items-center justify-between">
+            <div>
+              <div className="flex items-baseline gap-1 sm:gap-2">
+                <span className="text-xl sm:text-2xl lg:text-3xl font-bold text-green-600">₹{product.price.toLocaleString()}</span>
+                <span className="text-sm sm:text-base lg:text-lg text-gray-500 line-through">₹{originalPrice.toLocaleString()}</span>
               </div>
-            </div>
-          </div>
-
-          {/* Premium CTA */}
-          <Button 
-            onClick={handleOrderClick}
-            disabled={orderMutation.isPending || product.stock === 0}
-            className="w-full bg-gradient-to-r from-green-600 to-green-700 text-white hover:from-green-700 hover:to-green-800 hover:scale-105 transition-all duration-300 rounded-xl py-4 text-lg font-semibold shadow-lg hover:shadow-xl"
-            size="lg"
-          >
-            <img 
-              src="/assets/products/whatsapp-icon-green.svg" 
-              alt="WhatsApp" 
-              className="w-5 h-5 mr-3"
-            />
-            {orderMutation.isPending ? "Processing..." : "Order via WhatsApp"}
-          </Button>
-
-          {/* Single Customer Quote */}
-          {getProductReviews(product.id).length > 0 && (
-            <div className="pt-4 border-t border-gray-100">
-              <div className="flex items-start gap-3">
-                <div className="flex items-center gap-2">
-                  <span className="text-2xl">{getProductReviews(product.id)[0].flag}</span>
-                  <div>
-                    <div className="font-medium text-sm text-gray-900">{getProductReviews(product.id)[0].name}</div>
-                    <div className="flex text-yellow-400">
-                      {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="w-3 h-3 fill-current" />
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <p className="text-sm text-gray-600 italic mt-2 leading-relaxed">
-                "{getProductReviews(product.id)[0].text}"
+              <p className="text-xs sm:text-sm text-green-700 font-bold mt-1">
+                  Save ₹{(originalPrice - product.price).toLocaleString()}
               </p>
             </div>
-          )}
+            <div className="text-center">
+              <div className="text-lg sm:text-xl lg:text-2xl font-bold text-red-600">{discountPercentage}%</div>
+              <div className="text-xs text-red-600 font-medium">OFF</div>
+            </div>
+          </div>
         </div>
-      </motion.div>
 
-      <ProductDetailModal 
-        product={product}
-        hotelName={hotelName}
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-      />
-    </>
-  );
-}
+          {/* Key Info Bar */}
+          <div className="flex items-center justify-between bg-gray-50 rounded-lg p-2 sm:p-3">
+          <div className="flex items-center space-x-1 sm:space-x-2">
+            <Truck className="w-3 h-3 sm:w-4 sm:h-4 text-green-600" />
+            <span className="text-xs sm:text-sm font-medium text-gray-700">2-3 hrs delivery</span>
+          </div>
+          <div className="flex items-center space-x-1">
+            <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4 text-green-600" />
+            <span className="text-xs sm:text-sm font-medium text-green-700">{product.stock} in stock</span>
+          </div>
+        </div>
+
+          {/* Main CTA Button */}
+        <Button 
+          onClick={handleOrderClick}
+          disabled={orderMutation.isPending || product.stock === 0}
+            className="w-full bg-gradient-to-r from-green-600 to-green-700 text-white hover:from-green-700 hover:to-green-800 hover:transform hover:-translate-y-1 transition-all duration-300 hover:shadow-xl rounded-xl py-3 sm:py-4 text-sm sm:text-base lg:text-lg font-bold shadow-lg"
+          size="lg"
+          style={{
+            boxShadow: "0 4px 15px rgba(34, 197, 94, 0.3)",
+          }}
+        >
+          <img 
+            src="/assets/products/whatsapp-icon-green.svg" 
+            alt="WhatsApp" 
+            className="w-4 h-4 sm:w-5 sm:h-5 mr-2"
+          />
+          {orderMutation.isPending ? "Processing..." : "Order Now via WhatsApp"}
+        </Button>
+
+          {/* Single Customer Review */}
+         {getProductReviews(product.id).length > 0 && (
+           <div className="pt-3 sm:pt-4 border-t border-gray-200">
+             <div className="bg-gray-50 rounded-lg p-2 sm:p-3">
+               <div className="flex items-center justify-between mb-1 sm:mb-2">
+                 <div className="flex items-center space-x-1 sm:space-x-2">
+                   <span className="font-medium text-xs sm:text-sm text-gray-900">{getProductReviews(product.id)[0].name}</span>
+                   <span className="text-sm sm:text-lg">{getProductReviews(product.id)[0].flag}</span>
+                   <Badge variant="outline" className="text-xs">Hotel Guest</Badge>
+                 </div>
+                 <div className="flex items-center">
+                   {[...Array(getProductReviews(product.id)[0].rating)].map((_, i) => (
+                     <Star key={i} className="w-3 h-3 text-yellow-400 fill-current" />
+                   ))}
+                 </div>
+               </div>
+               <p className="text-xs sm:text-sm text-gray-700 italic leading-relaxed">
+                 "{getProductReviews(product.id)[0].text}"
+               </p>
+             </div>
+           </div>
+         )}
+       </div>
+     </motion.div>
+
+     <ProductDetailModal
+       product={product}
+       hotelName={hotelName}
+       isOpen={isModalOpen}
+       onClose={() => setIsModalOpen(false)}
+     />
+   </>
+   );
+ }
