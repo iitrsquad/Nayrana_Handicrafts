@@ -16,6 +16,14 @@ export default {
         "2xl": "1400px",
       },
     },
+    screens: {
+      'xs': '320px',     // Extra small mobile (iPhone SE, small Android)
+      'sm': '640px',     // Small tablets and large phones
+      'md': '768px',     // Tablets
+      'lg': '1024px',    // Small laptops
+      'xl': '1280px',    // Large laptops and desktops
+      '2xl': '1536px',   // Large desktops
+    },
     extend: {
       colors: {
         border: "hsl(var(--border))",
@@ -56,6 +64,18 @@ export default {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+      },
+      spacing: {
+        'safe-top': 'env(safe-area-inset-top)',
+        'safe-bottom': 'env(safe-area-inset-bottom)',
+        'safe-left': 'env(safe-area-inset-left)',
+        'safe-right': 'env(safe-area-inset-right)',
+      },
+      minHeight: {
+        'touch': '44px',  // iOS/Android minimum touch target
+      },
+      minWidth: {
+        'touch': '44px',  // iOS/Android minimum touch target
       },
       keyframes: {
         "accordion-down": {
