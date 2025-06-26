@@ -42,7 +42,7 @@ Hotel partners can access their specific interface using URL parameters:
 - `?hotel=itc` - ITC Mughal Resort & Spa
 - `?hotel=trident` - Trident Agra
 - `?hotel=radisson` - Radisson Blu Agra
-- Default: Pearl Heritage Hotel
+- Default: your hotel in Agra
 
 ## Tech Stack
 

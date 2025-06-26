@@ -16,13 +16,13 @@ const recentOrders = [
   { name: "Emma", country: "🇬🇧", item: "Marble Coaster", time: "2 hours ago" }
 ];
 
-export default function HeroSection({ hotelName }: HeroSectionProps) {
+export default function HeroSection({ hotelName: _hotelName }: HeroSectionProps) {
   const scrollToProducts = () => {
     document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   const openWhatsApp = () => {
-    const message = `Hi, I need help with ordering handicrafts. I'm staying at ${hotelName}.`;
+    const message = `Hi, I need help with ordering authentic Agra handicrafts with hotel delivery. Can you send me your current catalog and prices?`;
     const phoneNumber = '917417994386';
     const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     window.open(whatsappURL, '_blank');

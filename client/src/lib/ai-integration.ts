@@ -68,7 +68,7 @@ class AdvancedAIIntegration {
       const responses = [
         "The marble Taj Mahal replicas are absolutely my specialty! 😍 Rajesh uncle's family has been doing marble inlay work for 3 generations. His grandfather actually worked on Taj restoration in 1942. Each piece takes 4-6 days to complete with traditional tools. Want to see the different sizes available?",
         "Ah, you have excellent taste! The marble Taj replicas are our crown jewels. Rajesh uncle just completed a limited edition with 24k gold inlay - only 3 pieces this month. The detail work is museum-quality. Prices start from ₹2,500 vs ₹8,000+ in tourist shops. Interested?",
-        "Perfect choice! The marble Taj Mahal pieces are what made me famous among hotel guests. Each one comes with authenticity certificate and the story of the artisan who made it. I can arrange viewing at your hotel within 2 hours. Which hotel are you staying at?"
+        "Perfect choice! The marble Taj Mahal pieces are what made me famous among hotel guests. Each one comes with authenticity certificate and the story of the artisan who made it. I can arrange viewing and delivery within 2 hours in Agra. Where would you like me to deliver?"
       ];
       return responses[Math.floor(Math.random() * responses.length)];
     }
@@ -121,7 +121,7 @@ class AdvancedAIIntegration {
 
     // Hotel/delivery questions
     if (message.includes('hotel') || message.includes('delivery') || message.includes('deliver') || message.includes('staying')) {
-      return "Hotel delivery is my specialty! 🚗 I personally deliver to all major hotels in Agra - Oberoi, ITC Mughal, Trident, and others. Usually within 2-3 hours of confirmation. No extra charges, and you can inspect everything before paying. Which hotel are you staying at?";
+      return "Hotel delivery is my specialty! 🚗 I personally deliver to all major hotels in Agra - Oberoi, ITC Mughal, Trident, and others. Usually within 2-3 hours of confirmation. No extra charges, and you can inspect everything before paying. Where in Agra would you like delivery?";
     }
 
     // General questions - make them relevant

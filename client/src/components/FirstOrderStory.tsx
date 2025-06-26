@@ -4,14 +4,14 @@ import { Calendar, MapPin, Heart, Star } from 'lucide-react';
 const FirstOrderStory = () => {
   // WhatsApp order function
   const handleOrderNow = () => {
-    const message = `Hi! I saw Emma's success story on your website and I'm interested in ordering authentic Agra handicrafts. I'd like to save money like she did (₹6,103) and get 2-hour delivery to my hotel. Can you help me with:
+    const message = `Hi! I saw Emma's success story on your website and I'm interested in ordering authentic Agra handicrafts. I'd like to save money like she did (₹6,103) and get 2-hour hotel delivery. Can you help me with:
 
 🏛️ Marble Taj Mahal Replica (like Emma's)
 🐘 Wooden Elephant Pairs  
 🧣 Pashmina Shawls
 🎁 Other authentic pieces
 
-I'm staying in Agra and want to avoid tourist traps. Please send me your current offers!`;
+I'm in Agra and want to avoid tourist traps. Please send me your current offers!`;
     
     const whatsappURL = `https://wa.me/917417994386?text=${encodeURIComponent(message)}`;
     window.open(whatsappURL, '_blank');

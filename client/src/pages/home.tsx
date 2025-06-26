@@ -129,7 +129,7 @@ export default function Home() {
     'oberoi': 'The Oberoi Amarvilas'
   };
   
-  const hotelName = hotelNames[hotelCode] || 'Pearl Heritage Hotel';
+  const hotelName = hotelNames[hotelCode] || 'your hotel in Agra';
 
   return (
     <>

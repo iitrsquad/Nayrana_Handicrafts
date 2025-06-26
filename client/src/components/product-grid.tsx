@@ -168,7 +168,7 @@ export default function ProductGrid({ hotelName }: ProductGridProps) {
             size="lg"
             className="bg-amber-600 hover:bg-amber-700 text-white px-6 sm:px-8 py-2 sm:py-3 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl text-sm sm:text-base"
             onClick={() => {
-              const whatsappUrl = `https://wa.me/917417994386?text=Hi! I'm interested in your handcrafted products. I'm staying at ${hotelName}. Can you show me more items?`;
+              const whatsappUrl = `https://wa.me/917417994386?text=Hi! I'm interested in your authentic Agra handicrafts. Can you show me more items and hotel delivery options?`;
               window.open(whatsappUrl, '_blank');
             }}
           >
